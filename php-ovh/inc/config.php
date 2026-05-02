@@ -1,13 +1,13 @@
 <?php
 // ─── Configuration base de données ───────────────────────────────────────────
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'votre_base');       // À modifier sur OVH
-define('DB_USER', 'votre_utilisateur'); // À modifier sur OVH
-define('DB_PASS', 'votre_mot_de_passe'); // À modifier sur OVH
+define('DB_HOST', 'pechbogadmin.mysql.db');
+define('DB_NAME', 'pechbogadmin');
+define('DB_USER', 'pechbogadmin');
+define('DB_PASS', 'Azerty123');
 define('DB_CHARSET', 'utf8mb4');
 
 // ─── Configuration site ───────────────────────────────────────────────────────
-define('SITE_URL', 'https://www.votredomaine.fr'); // À modifier
+define('SITE_URL', 'https://www.pechbonnieu-arc-club.fr');
 define('SITE_NAME', 'Arc Club Pechbonnieu');
 define('UPLOAD_DIR', __DIR__ . '/../uploads/photos/');
 define('UPLOAD_URL', SITE_URL . '/uploads/photos/');
