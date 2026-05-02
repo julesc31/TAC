@@ -61,13 +61,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="admin-form-group">
       <label class="admin-label" style="font-size:.875rem;margin-bottom:.5rem;color:var(--stone2)">Adresse e-mail</label>
       <input type="email" name="email" required placeholder="admin@example.com" value="<?= h($_POST['email'] ?? '') ?>"
-             class="admin-input" style="padding:.75rem 1rem;border-radius:.75rem">
+             autocomplete="email" class="admin-input" style="padding:.75rem 1rem;border-radius:.75rem">
     </div>
 
     <div class="admin-form-group" style="position:relative">
       <label class="admin-label" style="font-size:.875rem;margin-bottom:.5rem;color:var(--stone2)">Mot de passe</label>
       <input type="password" name="password" required placeholder="••••••••" id="pwd-input"
-             class="admin-input" style="padding:.75rem 1rem;padding-right:3rem;border-radius:.75rem">
+             autocomplete="current-password" class="admin-input" style="padding:.75rem 1rem;padding-right:3rem;border-radius:.75rem">
       <button type="button" onclick="togglePwd()" style="position:absolute;right:.75rem;bottom:.75rem;background:none;border:none;color:var(--stone4);cursor:pointer;padding:.25rem;display:flex;align-items:center" title="Afficher/masquer">
         <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       </button>
