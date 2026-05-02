@@ -1,0 +1,4 @@
+# Interdit l'accès direct aux fichiers sensibles
+<FilesMatch "^(config\.php|db\.php|install\.sql)$">
+    Require all denied
+</FilesMatch>

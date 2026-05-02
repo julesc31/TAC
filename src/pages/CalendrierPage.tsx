@@ -102,8 +102,6 @@ function fmt(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 }
 
-const EDGE_FUNCTION_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/google-calendar`;
-
 export default function CalendrierPage() {
   const today = new Date();
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -121,13 +119,8 @@ export default function CalendrierPage() {
         // Fetch 12 months of events
         const timeMin = new Date(today.getFullYear() - 1, 0, 1).toISOString();
         const timeMax = new Date(today.getFullYear() + 2, 11, 31).toISOString();
-        const url = `${EDGE_FUNCTION_URL}?timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}`;
-        const res = await fetch(url, {
-          headers: {
-            'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
-            'Content-Type': 'application/json',
-          },
-        });
+        const url = `/api/calendar.php?timeMin=${encodeURIComponent(timeMin)}&timeMax=${encodeURIComponent(timeMax)}`;
+        const res = await fetch(url);
         const data = await res.json();
         if (!res.ok) throw new Error(data?.error ?? `Erreur ${res.status}`);
         setEvents(parseGoogleEvents((data.items ?? []).filter((item: any) => !(item.summary ?? '').toLowerCase().startsWith('[privé]'))));

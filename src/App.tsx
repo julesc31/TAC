@@ -12,8 +12,7 @@ import PolitiqueConfidentialitePage from './pages/PolitiqueConfidentialitePage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminPage from './pages/AdminPage';
 import Footer from './components/Footer';
-import { supabase } from './lib/supabase';
-import type { Session } from '@supabase/supabase-js';
+import { api } from './lib/api';
 
 export type Page =
   | 'accueil'
@@ -29,14 +28,10 @@ export type Page =
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('accueil');
-  const [session, setSession] = useState<Session | null>(null);
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session));
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, s) => {
-      setSession(s);
-    });
-    return () => subscription.unsubscribe();
+    api.auth.check().then(({ loggedIn: li }) => setLoggedIn(li));
   }, []);
 
   const navigate = (page: Page) => {
@@ -48,20 +43,28 @@ function App() {
 
   const renderPage = () => {
     if (isAdminPage) {
-      if (!session) return <AdminLoginPage onLogin={() => {}} />;
-      return <AdminPage onLogout={() => navigate('accueil')} />;
+      if (loggedIn === null) return null;
+      if (!loggedIn) return <AdminLoginPage onLogin={() => setLoggedIn(true)} />;
+      return (
+        <AdminPage
+          onLogout={() => {
+            setLoggedIn(false);
+            navigate('accueil');
+          }}
+        />
+      );
     }
     switch (currentPage) {
-      case 'accueil': return <HomePage navigate={navigate} />;
-      case 'club': return <ClubPage />;
-      case 'album-photo': return <AlbumPhotoPage />;
-      case 'disciplines': return <DisciplinesPage />;
-      case 'calendrier': return <CalendrierPage />;
-      case 'rejoindre': return <RejoindreePage navigate={navigate} />;
-      case 'traditions': return <TraditionsPage />;
-      case 'mentions-legales': return <MentionsLegalesPage />;
+      case 'accueil':                   return <HomePage navigate={navigate} />;
+      case 'club':                      return <ClubPage />;
+      case 'album-photo':               return <AlbumPhotoPage />;
+      case 'disciplines':               return <DisciplinesPage />;
+      case 'calendrier':                return <CalendrierPage />;
+      case 'rejoindre':                 return <RejoindreePage navigate={navigate} />;
+      case 'traditions':                return <TraditionsPage />;
+      case 'mentions-legales':          return <MentionsLegalesPage />;
       case 'politique-confidentialite': return <PolitiqueConfidentialitePage />;
-      default: return <HomePage navigate={navigate} />;
+      default:                          return <HomePage navigate={navigate} />;
     }
   };
 
@@ -72,9 +75,12 @@ function App() {
         {renderPage()}
       </main>
       {!isAdminPage && <Footer navigate={navigate} />}
-      {isAdminPage && session && (
+      {isAdminPage && loggedIn && (
         <footer className="py-4 text-center border-t border-white/5">
-          <button onClick={() => navigate('accueil')} className="text-stone-600 hover:text-stone-400 text-xs transition-colors">
+          <button
+            onClick={() => navigate('accueil')}
+            className="text-stone-600 hover:text-stone-400 text-xs transition-colors"
+          >
             Retour au site public
           </button>
         </footer>

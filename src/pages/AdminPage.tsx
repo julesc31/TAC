@@ -3,7 +3,7 @@ import {
   LogOut, Plus, Trash2, Pencil, Check, X, Loader2, Newspaper, Image,
   AlertCircle, ChevronUp, ChevronDown,
 } from 'lucide-react';
-import { supabase, type NewsItem, type PhotoItem } from '../lib/supabase';
+import { api, type NewsItem, type PhotoItem } from '../lib/api';
 
 interface AdminPageProps {
   onLogout: () => void;
@@ -32,9 +32,8 @@ function NewsSection() {
   const [form, setForm] = useState(blankForm);
 
   const fetchNews = async () => {
-    const { data, error: err } = await supabase.from('news').select('*').order('published_at', { ascending: false });
-    if (err) setError('Erreur de chargement.');
-    else setNews(data ?? []);
+    const { data } = await api.news.list();
+    setNews(data ?? []);
     setLoading(false);
   };
 
@@ -51,29 +50,25 @@ function NewsSection() {
   const saveEdit = async () => {
     if (!editingId) return;
     setSaving(true);
-    const { error: err } = await supabase.from('news').update({
-      tag: form.tag, title: form.title, body: form.body, published_at: form.published_at,
-    }).eq('id', editingId);
+    const result = await api.news.update(editingId, form);
     setSaving(false);
-    if (err) { setError('Erreur lors de la sauvegarde.'); return; }
+    if (!result.success) { setError('Erreur lors de la sauvegarde.'); return; }
     setEditingId(null);
     fetchNews();
   };
 
   const deleteItem = async (id: string) => {
     if (!confirm('Supprimer cette actualité ?')) return;
-    await supabase.from('news').delete().eq('id', id);
+    await api.news.remove(id);
     fetchNews();
   };
 
   const addNews = async () => {
     if (!form.title.trim() || !form.body.trim()) { setError('Titre et contenu requis.'); return; }
     setSaving(true);
-    const { error: err } = await supabase.from('news').insert({
-      tag: form.tag, title: form.title, body: form.body, published_at: form.published_at,
-    });
+    const result = await api.news.create(form);
     setSaving(false);
-    if (err) { setError('Erreur lors de l\'ajout.'); return; }
+    if (!result.success) { setError("Erreur lors de l'ajout."); return; }
     setForm(blankForm);
     setShowForm(false);
     fetchNews();
@@ -90,7 +85,6 @@ function NewsSection() {
         </div>
       )}
 
-      {/* Bouton ajouter */}
       <button
         onClick={() => { setShowForm(!showForm); setEditingId(null); setForm(blankForm); }}
         className="inline-flex items-center gap-2 bg-[#ffd700] hover:bg-yellow-300 text-[#0a2744] font-bold px-5 py-2.5 rounded-xl transition-all duration-200 text-sm"
@@ -99,7 +93,6 @@ function NewsSection() {
         Nouvelle actualité
       </button>
 
-      {/* Formulaire d'ajout */}
       {showForm && (
         <NewsForm
           form={form}
@@ -111,7 +104,6 @@ function NewsSection() {
         />
       )}
 
-      {/* Liste */}
       {news.length === 0 && <p className="text-stone-400 text-sm py-6 text-center">Aucune actualité.</p>}
       {news.map((item) => (
         <div key={item.id} className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
@@ -240,9 +232,8 @@ function PhotosSection() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchPhotos = async () => {
-    const { data, error: err } = await supabase.from('photos').select('*').order('position', { ascending: true });
-    if (err) setError('Erreur de chargement.');
-    else setPhotos(data ?? []);
+    const { data } = await api.photos.list();
+    setPhotos(data ?? []);
     setLoading(false);
   };
 
@@ -255,7 +246,7 @@ function PhotosSection() {
 
   const saveEdit = async (id: string) => {
     setSaving(true);
-    await supabase.from('photos').update({ caption: editForm.caption, category: editForm.category }).eq('id', id);
+    await api.photos.update(id, editForm);
     setSaving(false);
     setEditingId(null);
     fetchPhotos();
@@ -263,7 +254,7 @@ function PhotosSection() {
 
   const deletePhoto = async (id: string) => {
     if (!confirm('Supprimer cette photo ?')) return;
-    await supabase.from('photos').delete().eq('id', id);
+    await api.photos.remove(id);
     fetchPhotos();
   };
 
@@ -271,8 +262,7 @@ function PhotosSection() {
     if (index === 0) return;
     const a = photos[index];
     const b = photos[index - 1];
-    await supabase.from('photos').update({ position: b.position }).eq('id', a.id);
-    await supabase.from('photos').update({ position: a.position }).eq('id', b.id);
+    await api.photos.swap(a.id, a.position, b.id, b.position);
     fetchPhotos();
   };
 
@@ -280,8 +270,7 @@ function PhotosSection() {
     if (index === photos.length - 1) return;
     const a = photos[index];
     const b = photos[index + 1];
-    await supabase.from('photos').update({ position: b.position }).eq('id', a.id);
-    await supabase.from('photos').update({ position: a.position }).eq('id', b.id);
+    await api.photos.swap(a.id, a.position, b.id, b.position);
     fetchPhotos();
   };
 
@@ -290,18 +279,14 @@ function PhotosSection() {
     if (!file) return;
     setUploading(true);
     setError('');
-    const ext = file.name.split('.').pop();
-    const fileName = `${Date.now()}.${ext}`;
-    const { data, error: uploadErr } = await supabase.storage.from('photos').upload(fileName, file, { upsert: false });
-    if (uploadErr) {
-      setError('Erreur lors de l\'upload. Vérifiez que le bucket "photos" existe dans Supabase Storage.');
-      setUploading(false);
+    const result = await api.photos.upload(file);
+    setUploading(false);
+    if (!result.success || !result.url) {
+      setError(result.error ?? "Erreur lors de l'upload.");
       return;
     }
-    const { data: publicData } = supabase.storage.from('photos').getPublicUrl(data.path);
-    setAddForm((f) => ({ ...f, url: publicData.publicUrl }));
+    setAddForm((f) => ({ ...f, url: result.url! }));
     setShowAddForm(true);
-    setUploading(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -309,7 +294,7 @@ function PhotosSection() {
     if (!addForm.url.trim()) { setError('URL requise.'); return; }
     setSaving(true);
     const maxPos = photos.length > 0 ? Math.max(...photos.map((p) => p.position)) : 0;
-    await supabase.from('photos').insert({ url: addForm.url, caption: addForm.caption, category: addForm.category, position: maxPos + 1 });
+    await api.photos.create({ ...addForm, position: maxPos + 1 });
     setSaving(false);
     setAddForm({ url: '', caption: '', category: PHOTO_CATEGORIES[0] });
     setShowAddForm(false);
@@ -327,7 +312,6 @@ function PhotosSection() {
         </div>
       )}
 
-      {/* Actions d'ajout */}
       <div className="flex flex-wrap gap-3">
         <label className={`inline-flex items-center gap-2 cursor-pointer bg-[#ffd700] hover:bg-yellow-300 text-[#0a2744] font-bold px-5 py-2.5 rounded-xl transition-all text-sm ${uploading ? 'opacity-60 pointer-events-none' : ''}`}>
           {uploading ? <Loader2 size={16} className="animate-spin" /> : <Plus size={16} />}
@@ -343,7 +327,6 @@ function PhotosSection() {
         </button>
       </div>
 
-      {/* Formulaire ajout */}
       {showAddForm && (
         <div className="bg-white/5 border border-[#ffd700]/20 rounded-2xl p-5 space-y-4">
           <div>
@@ -393,7 +376,6 @@ function PhotosSection() {
         </div>
       )}
 
-      {/* Liste photos */}
       {photos.length === 0 && <p className="text-stone-400 text-sm py-6 text-center">Aucune photo.</p>}
       <div className="space-y-2">
         {photos.map((item, index) => (
@@ -462,14 +444,13 @@ export default function AdminPage({ onLogout }: AdminPageProps) {
   const [tab, setTab] = useState<Tab>('news');
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await api.auth.logout();
     onLogout();
   };
 
   return (
     <div className="min-h-screen bg-[#0a2744] pt-6 pb-20">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
-        {/* Header admin */}
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-2xl font-bold text-white">Administration</h1>
@@ -484,7 +465,6 @@ export default function AdminPage({ onLogout }: AdminPageProps) {
           </button>
         </div>
 
-        {/* Tabs */}
         <div className="flex gap-2 bg-white/5 border border-white/10 rounded-2xl p-1.5 mb-8 w-fit">
           <button
             onClick={() => setTab('news')}

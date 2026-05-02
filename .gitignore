@@ -21,3 +21,6 @@ dist-ssr
 *.sln
 *.sw?
 .env
+api/config.php
+uploads/photos/*
+!uploads/photos/.gitkeep

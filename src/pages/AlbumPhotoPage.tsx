@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, ZoomIn, Loader2, AlertCircle } from 'lucide-react';
-import { supabase, type PhotoItem } from '../lib/supabase';
+import { api, type PhotoItem } from '../lib/api';
 
 export default function AlbumPhotoPage() {
   const [photos, setPhotos] = useState<PhotoItem[]>([]);
@@ -10,15 +10,13 @@ export default function AlbumPhotoPage() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
-    supabase
-      .from('photos')
-      .select('*')
-      .order('position', { ascending: true })
-      .then(({ data, error: err }) => {
-        if (err) setError(true);
-        else setPhotos(data ?? []);
-        setLoading(false);
-      });
+    api.photos.list().then(({ data }) => {
+      setPhotos(data ?? []);
+      setLoading(false);
+    }).catch(() => {
+      setError(true);
+      setLoading(false);
+    });
   }, []);
 
   const categories = ['Tous', ...Array.from(new Set(photos.map((p) => p.category)))];

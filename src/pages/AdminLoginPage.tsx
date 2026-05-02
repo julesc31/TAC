@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Target, Eye, EyeOff, Loader2, AlertCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { api } from '../lib/api';
 
 interface AdminLoginPageProps {
   onLogin: () => void;
@@ -17,12 +17,12 @@ export default function AdminLoginPage({ onLogin }: AdminLoginPageProps) {
     e.preventDefault();
     setError('');
     setLoading(true);
-    const { error: err } = await supabase.auth.signInWithPassword({ email, password });
+    const result = await api.auth.login(email, password);
     setLoading(false);
-    if (err) {
-      setError('Email ou mot de passe incorrect.');
-    } else {
+    if (result.success) {
       onLogin();
+    } else {
+      setError(result.error ?? 'Email ou mot de passe incorrect.');
     }
   };
 

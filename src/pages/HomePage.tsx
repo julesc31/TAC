@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, ChevronDown, Calendar, Megaphone, Trophy, Users, Loader2, AlertCircle } from 'lucide-react';
 import type { Page } from '../App';
-import { supabase, type NewsItem } from '../lib/supabase';
+import { api, type NewsItem } from '../lib/api';
 
 interface HomePageProps {
   navigate: (page: Page) => void;
@@ -30,19 +30,13 @@ export default function HomePage({ navigate }: HomePageProps) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    supabase
-      .from('news')
-      .select('*')
-      .order('published_at', { ascending: false })
-      .limit(6)
-      .then(({ data, error: err }) => {
-        if (err) {
-          setError(true);
-        } else {
-          setNews(data ?? []);
-        }
-        setLoading(false);
-      });
+    api.news.list(6).then(({ data }) => {
+      setNews(data ?? []);
+      setLoading(false);
+    }).catch(() => {
+      setError(true);
+      setLoading(false);
+    });
   }, []);
 
   return (
