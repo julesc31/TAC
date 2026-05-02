@@ -68,10 +68,10 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
 
 -- ─── Compte admin par défaut ─────────────────────────────────
 -- Mot de passe : ChangeMe2024!  (CHANGEZ-LE immédiatement après connexion)
--- Hash généré avec password_hash('ChangeMe2024!', PASSWORD_BCRYPT)
+-- Hash généré avec password_hash('ChangeMe2024!', PASSWORD_BCRYPT, ['cost'=>12])
 INSERT IGNORE INTO `admin_users` (`email`, `password_hash`) VALUES (
   'admin@arcclubpechbonnieu.fr',
-  '$2y$12$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi'
+  '$2y$12$oTUuyi33y86AJseNjOIRxuRF93bFTkESKaRy8FKLvMtMhPALjLC0q'
 );
 
 -- ─── Données de démonstration ────────────────────────────────
