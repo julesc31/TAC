@@ -17,13 +17,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = db()->prepare("SELECT id, password_hash FROM admin_users WHERE email = ? LIMIT 1");
             $stmt->execute([$email]);
             $user = $stmt->fetch();
+            // DEBUG TEMPORAIRE — à supprimer après
+            die('<pre>user trouvé: ' . ($user ? 'OUI' : 'NON') . "\n"
+              . 'email cherché: ' . htmlspecialchars($email) . "\n"
+              . 'hash en base: ' . ($user['password_hash'] ?? 'N/A') . "\n"
+              . 'password_verify: ' . ($user ? var_export(password_verify($password, $user['password_hash']), true) : 'N/A')
+              . '</pre>');
             if ($user && password_verify($password, $user['password_hash'])) {
                 session_regenerate_id(true);
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['admin_id']        = $user['id'];
                 redirect('/admin/');
             }
-        } catch (Exception $e) {}
+        } catch (Exception $e) { die('Erreur DB: ' . $e->getMessage()); }
     }
     $error = 'Email ou mot de passe incorrect.';
 }
