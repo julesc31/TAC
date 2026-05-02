@@ -1,0 +1,118 @@
+====================================================
+  ARC CLUB PECHBONNIEU — Guide de déploiement OVH
+====================================================
+
+ÉTAPE 1 — Créer la base de données MySQL sur OVH
+-------------------------------------------------
+1. Connectez-vous à votre espace client OVH
+2. Hébergements → votre hébergement → Bases de données → Créer une base de données
+3. Notez le nom, l'utilisateur, le mot de passe et le serveur MySQL
+
+ÉTAPE 2 — Importer le script SQL
+---------------------------------
+1. Accédez à phpMyAdmin (depuis votre espace client OVH)
+2. Sélectionnez votre base de données
+3. Onglet "Importer" → sélectionnez le fichier "install.sql"
+4. Cliquez "Exécuter"
+
+ÉTAPE 3 — Configurer la connexion base de données
+---------------------------------------------------
+Ouvrez le fichier inc/config.php et modifiez :
+
+  define('DB_HOST', 'votre-serveur.mysql.db');   ← fourni par OVH
+  define('DB_NAME', 'votre_base');               ← nom de la BDD
+  define('DB_USER', 'votre_utilisateur');        ← identifiant BDD
+  define('DB_PASS', 'votre_mot_de_passe');       ← mot de passe BDD
+  define('SITE_URL', 'https://www.votredomaine.fr');  ← votre domaine
+
+ÉTAPE 4 — Uploader les fichiers via FTP
+-----------------------------------------
+Utilisez FileZilla ou le gestionnaire de fichiers OVH.
+
+Connexion FTP :
+  Hôte : ftp.votredomaine.fr (ou fourni par OVH)
+  Identifiant : votre FTP OVH
+  Mot de passe : votre mot de passe FTP
+  Port : 21
+
+Uploadez TOUT le contenu du dossier "php-ovh/" dans le
+répertoire racine de votre hébergement (www/ ou public_html/).
+
+Structure finale attendue sur le serveur :
+  www/
+  ├── .htaccess
+  ├── index.php
+  ├── club.php
+  ├── disciplines.php
+  ├── traditions.php
+  ├── rejoindre.php
+  ├── contact.php
+  ├── calendrier.php
+  ├── album-photo.php
+  ├── mentions-legales.php
+  ├── politique-confidentialite.php
+  ├── install.sql          ← À SUPPRIMER après installation !
+  ├── DEPLOIEMENT.txt      ← À SUPPRIMER après installation !
+  ├── assets/
+  │   ├── css/style.css
+  │   └── js/main.js
+  ├── inc/
+  │   ├── config.php
+  │   ├── functions.php
+  │   ├── header.php
+  │   └── footer.php
+  ├── uploads/
+  │   └── photos/          ← dossier d'upload (permissions 755)
+  └── admin/
+      ├── index.php
+      ├── login.php
+      ├── logout.php
+      ├── change-password.php
+      └── partials/
+
+ÉTAPE 5 — Permissions du dossier uploads
+------------------------------------------
+Via FTP, faites un clic droit sur "uploads/photos/" → Permissions
+Mettez : 755 (ou 775 si 755 ne fonctionne pas)
+
+ÉTAPE 6 — Première connexion admin
+-------------------------------------
+1. Allez sur : https://votredomaine.fr/admin/
+2. Email    : admin@arcclubpechbonnieu.fr
+3. Mot de passe : ChangeMe2024!
+
+4. !! CHANGEZ VOTRE MOT DE PASSE IMMÉDIATEMENT !!
+   → https://votredomaine.fr/admin/change-password.php
+
+ÉTAPE 7 — Nettoyage
+----------------------
+Supprimez ces fichiers du serveur après déploiement :
+  - install.sql
+  - DEPLOIEMENT.txt
+
+====================================================
+  ACCÈS RAPIDES
+====================================================
+
+Site public   : https://votredomaine.fr/
+Administration : https://votredomaine.fr/admin/
+phpMyAdmin    : https://phpmyadmin.ovh.net/
+
+====================================================
+  FONCTIONNALITÉS INCLUSES
+====================================================
+
+✓ Page d'accueil avec actualités dynamiques
+✓ Le Club, Disciplines, Traditions (pages statiques)
+✓ Calendrier synchronisé avec Google Calendar
+✓ Album photo avec filtres et lightbox
+✓ Formulaire Rejoindre (préinscriptions sauvegardées en BDD)
+✓ Formulaire Contact (messages sauvegardés en BDD)
+✓ Espace admin sécurisé :
+    - Gestion des actualités (ajouter/modifier/supprimer)
+    - Gestion des photos (upload fichier ou URL, réordonner)
+    - Consultation des préinscriptions
+    - Consultation des messages de contact
+✓ Mentions légales & Politique de confidentialité
+✓ Design responsive (mobile, tablette, desktop)
+✓ SEO basique (balises meta, titres)

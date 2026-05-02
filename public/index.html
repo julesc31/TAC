@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Club de tir à l'arc de Pechbonnieu - Découvrez le tir à l'arc, sport alliant précision et concentration">
+    <title>Arc Club Pechbonnieu - Accueil</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+    <link rel="preload" href="images/logo.png" as="image">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="images/logo.png" alt="Logo Arc Club Pechbonnieu" class="logo">
+                <h1>Arc Club Pechbonnieu</h1>
+            </div>
+
+            <!-- Navigation Desktop -->
+            <nav class="desktop-nav" aria-label="Navigation principale">
+                <ul role="menubar">
+                    <li role="none">
+                        <a href="index.html" class="active" role="menuitem">
+                            <span>Accueil</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="club.html" role="menuitem">
+                            <span>Le Club</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="disciplines.html" role="menuitem">
+                            <span>Disciplines</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="formation.html" role="menuitem">
+                            <span>Formation</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="traditions-archers.html" role="menuitem">
+                            <span>Traditions</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="rejoindre.html" role="menuitem">
+                            <span>Rejoindre</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="contact.html" role="menuitem">
+                            <span>Contact</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Bouton Menu Mobile -->
+            <button class="mobile-menu-toggle" aria-label="Menu" aria-expanded="false">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Overlay Mobile -->
+    <div class="mobile-overlay"></div>
+
+    <!-- Navigation Mobile -->
+    <nav class="mobile-nav" aria-label="Navigation mobile">
+        <ul>
+            <li><a href="index.html" class="active"><i class="fas fa-home"></i><span>Accueil</span></a></li>
+            <li><a href="club.html"><i class="fas fa-users"></i><span>Le Club</span></a></li>
+            <li><a href="disciplines.html"><i class="fas fa-bullseye"></i><span>Disciplines</span></a></li>
+            <li><a href="formation.html"><i class="fas fa-graduation-cap"></i><span>Formation</span></a></li>
+            <li><a href="traditions-archers.html"><i class="fas fa-history"></i><span>Traditions</span></a></li>
+            <li><a href="rejoindre.html"><i class="fas fa-sign-in-alt"></i><span>Rejoindre</span></a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i><span>Contact</span></a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero-content">
+                <h2 id="hero-title">Bienvenue au club de tir à l'arc de Pechbonnieu</h2>
+                <p>Le tir à l'arc, discipline millénaire alliant précision, concentration et maîtrise de soi, est au cœur de notre passion. Nous nous engageons à partager notre enthousiasme avec tous nos membres, des débutants aux archers confirmés.</p>
+            </div>
+        </section>
+
+        <section id="about-archery" class="section" aria-labelledby="archery-title">
+            <h2 id="archery-title">LE TIR A L'ARC</h2>
+            <div class="content-wrapper">
+                <div>
+                    <p>Le Tir à l'Arc était pratiqué à la préhistoire comme arme de chasse, puis, à <a href="https://carlpepin.com/2010/08/29/les-archers-medievaux/" target="_blank" rel="noopener noreferrer">l'époque des chevaliers</a>, comme arme de guerre. La pratique actuelle est un art martial, qui allie de nombreuses qualités :</p>
+                    <ul>
+                        <li>Anticipation, contrôle de la respiration, de la posture, de la tension musculaire</li>
+                        <li>Amélioration de l'endurance cardiovasculaire</li>
+                        <li>Maîtrise de soi et de ses émotions</li>
+                        <li>Amélioration de la coordination des mouvements</li>
+                        <li>Amélioration de ses repères dans l'espace</li>
+                    </ul>
+                    <p>Il peut être pratiqué toute l'année, que ce soit en salle ou en extérieur.</p>
+                    <p>Ce sport est un excellent moyen de détente et de relâchement des tensions accumulées dans la journée.</p>
+                    <p>Il fait appel à des qualités physiques et mentales. Il peut se pratiquer en compétition ou en une activité de loisir, il n'est pas nécessaire d'être un champion de haut niveau pour y trouver un grand plaisir.</p>
+                    <p>Qui n'a jamais rêvé de ressembler à Robin des bois ou autre archer légendaire ?</p>
+                </div>
+                <img src="images/robin.jpg" alt="Illustration de Robin des bois tirant à l'arc" class="discipline-image" loading="lazy" width="400" height="300">
+            </div>
+        </section>
+
+        <section id="reasons" class="section" aria-labelledby="reasons-title">
+            <h2 id="reasons-title">SIX BONNES RAISONS DE PRATIQUER LE TIR À L'ARC</h2>
+            <ol class="reasons-list">
+                <li><strong>Sport de plein air et de salle :</strong> Pratique toute l'année, en ville ou à la campagne, en loisir comme en compétition.</li>
+                <li><strong>Sport santé - Bon pour le corps :</strong> Amélioration de la coordination, de l'équilibre, exercice musculaire harmonieux, amélioration du système cardiovasculaire.</li>
+                <li><strong>Sport santé - Bon pour l'esprit :</strong> Effet anti-stress, canalisation de l'énergie, amélioration de la concentration, maîtrise de soi.</li>
+                <li><strong>Sport - Bon pour tous :</strong> Adapté à tous les âges et toutes les morphologies.</li>
+                <li><strong>Sport d'intégration :</strong> Permet à tous, valides et non valides, de pratiquer ensemble.</li>
+                <li><strong>Sport éducatif :</strong> Apprentissage du calcul, gestion des émotions, respect des règles et de l'environnement.</li>
+            </ol>
+            <p><strong>Sport créateur de lien social :</strong> Favorise la convivialité, les échanges entre générations, et peut se pratiquer en famille ou en équipe.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Arc Club Pechbonnieu. Tous droits réservés.</p>
+        <p><a href="mentions-legales.html">Mentions légales</a> | <a href="politique-confidentialite.html">Politique de confidentialité</a></p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Variables communes
+        const body = document.body;
+        const header = document.querySelector('header');
+        const sections = document.querySelectorAll('.section');
+        const hero = document.querySelector('.hero');
+        const links = document.querySelectorAll('a:not([target="_blank"])');
+
+        // === NAVIGATION MOBILE ===
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const mobileNav = document.querySelector('.mobile-nav');
+        const mobileOverlay = document.querySelector('.mobile-overlay');
+
+        // Fonction pour ouvrir/fermer le menu mobile
+        function toggleMobileMenu() {
+            if (!mobileToggle || !mobileNav || !mobileOverlay) return;
+            
+            const isActive = mobileNav.classList.contains('active');
+            
+            mobileToggle.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            
+            // Mise à jour de l'attribut aria-expanded
+            mobileToggle.setAttribute('aria-expanded', !isActive);
+            
+            // Bloquer le scroll du body quand le menu est ouvert
+            body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Fonction pour fermer le menu mobile
+        function closeMobileMenu() {
+            if (!mobileToggle || !mobileNav || !mobileOverlay) return;
+            
+            mobileToggle.classList.remove('active');
+            mobileNav.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            body.style.overflow = '';
+        }
+
+        // Event listeners pour navigation mobile
+        if (mobileToggle) {
+            mobileToggle.addEventListener('click', toggleMobileMenu);
+        }
+        if (mobileOverlay) {
+            mobileOverlay.addEventListener('click', closeMobileMenu);
+        }
+
+        // Fermer le menu lors du clic sur un lien mobile
+        document.querySelectorAll('.mobile-nav a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // === ANIMATIONS ===
+        function fadeInBody() {
+            requestAnimationFrame(() => {
+                body.classList.add('fade-in', 'visible');
+            });
+        }
+
+        function handleLinkClick(e) {
+            // Ne pas intercepter les liens externes
+            if (this.getAttribute('target') === '_blank' || 
+                this.href.startsWith('mailto:') || 
+                this.href.startsWith('tel:') ||
+                this.classList.contains('active')) {
+                return;
+            }
+            
+            e.preventDefault();
+            const destination = this.href;
+            body.classList.remove('fade-in');
+            body.classList.add('fade-out');
+            
+            setTimeout(() => {
+                window.location.href = destination;
+            }, 300);
+        }
+
+        // Animation de l'en-tête au défilement
+        function handleScroll() {
+            requestAnimationFrame(() => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+        }
+
+        // Observer pour animations sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    requestAnimationFrame(() => {
+                        entry.target.classList.add('visible');
+                    });
+                }
+            });
+        }, { 
+            threshold: 0.1,
+            rootMargin: '20px'
+        });
+
+        sections.forEach(section => observer.observe(section));
+        if (hero) observer.observe(hero);
+
+        // Event listeners
+        links.forEach(link => link.addEventListener('click', handleLinkClick));
+        window.addEventListener('scroll', handleScroll, { passive: true });
+
+        // Fermer le menu avec Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileNav && mobileNav.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Initialisation
+        setTimeout(fadeInBody, 100);
+    });
+
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            requestAnimationFrame(() => {
+                document.body.classList.remove('fade-out');
+                document.body.classList.add('fade-in', 'visible');
+            });
+        }
+    });
+    </script>
+</body>
+</html>
