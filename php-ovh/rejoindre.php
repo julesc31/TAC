@@ -62,10 +62,8 @@ include __DIR__ . '/inc/header.php';
 
   <div class="container-lg" style="padding-top:3rem;padding-bottom:5rem">
 
-    <!-- Bloc infos + carte -->
     <div class="two-col" style="gap:2.5rem;margin-bottom:3rem">
 
-      <!-- Colonne gauche : infos pratiques -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
 
         <section class="card">
@@ -118,7 +116,6 @@ include __DIR__ . '/inc/header.php';
 
       </div>
 
-      <!-- Colonne droite : carte Leaflet -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
         <section class="card" style="padding:0;overflow:hidden">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--white10)">
@@ -152,7 +149,6 @@ include __DIR__ . '/inc/header.php';
       </div>
     </div>
 
-    <!-- Formulaire unique -->
     <section class="card" style="max-width:52rem;margin:0 auto">
       <h2 class="card-title">Formulaire de contact & préinscription</h2>
       <p style="color:var(--stone4);font-size:.875rem;margin-bottom:2rem">Demande d'information, préinscription ou autre — un seul formulaire suffit. Nous vous répondrons sous 48h.</p>
@@ -174,17 +170,15 @@ include __DIR__ . '/inc/header.php';
         <form method="POST">
           <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
 
-          <!-- Sujet -->
           <div class="form-group">
             <label class="form-label">Objet de votre demande *</label>
             <select name="sujet" id="sujet-select" class="form-select" onchange="togglePreinscription(this.value)">
-              <option value="information"   <?= ($_POST['sujet'] ?? '') === 'information'   ? 'selected' : '' ?>>Demande d'information générale</option>
+              <option value="information"    <?= ($_POST['sujet'] ?? '') === 'information'    ? 'selected' : '' ?>>Demande d'information générale</option>
               <option value="preinscription" <?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'selected' : '' ?>>Préinscription au club</option>
               <option value="autre"          <?= ($_POST['sujet'] ?? '') === 'autre'          ? 'selected' : '' ?>>Autre</option>
             </select>
           </div>
 
-          <!-- Nom / Email -->
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
             <div class="form-group">
               <label class="form-label">Nom complet *</label>
@@ -201,7 +195,6 @@ include __DIR__ . '/inc/header.php';
             <input type="tel" name="telephone" value="<?= h($_POST['telephone'] ?? '') ?>" placeholder="06 xx xx xx xx" class="form-input">
           </div>
 
-          <!-- Champs préinscription (affichés dynamiquement) -->
           <div id="preinscription-fields" style="display:<?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'block' : 'none' ?>">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
               <div class="form-group">
@@ -242,7 +235,6 @@ include __DIR__ . '/inc/header.php';
             </div>
           </div>
 
-          <!-- Message -->
           <div class="form-group">
             <label class="form-label">Message *</label>
             <textarea name="message" required rows="5" placeholder="Votre message, questions, informations complémentaires..." class="form-textarea"><?= h($_POST['message'] ?? '') ?></textarea>
