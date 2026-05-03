@@ -26,7 +26,7 @@ include __DIR__ . '/inc/header.php';
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-bg" style="background-image:url('https://images.pexels.com/photos/3621104/pexels-photo-3621104.jpeg?auto=compress&cs=tinysrgb&w=1600')"></div>
+  <div class="hero-bg" style="background-image:url('/uploads/photos/banner3.jpg')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-badge">
