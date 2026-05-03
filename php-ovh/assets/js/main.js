@@ -14,7 +14,7 @@ if (header) {
   onScroll();
 }
 
-// ─── Burger menu ────────────────────────────────────────────────────────────
+// ─── Burger menu ────────────────────────────────────────────────────────
 const burger = document.getElementById('burger');
 const nav = document.getElementById('main-nav');
 const burgerIconMenu = document.getElementById('burger-icon-menu');
@@ -34,7 +34,7 @@ if (burger && nav) {
   }));
 }
 
-// ─── Photo gallery filter + lightbox ────────────────────────────────────────
+// ─── Photo gallery filter + lightbox ────────────────────────────────────────────
 function initGallery() {
   const filterBtns = document.querySelectorAll('.filter-btn');
   const photoItems = document.querySelectorAll('.photo-item');
@@ -105,7 +105,7 @@ function initGallery() {
   }
 }
 
-// ─── Calendar ───────────────────────────────────────────────────────────────
+// ─── Calendar ────────────────────────────────────────────────────────────
 function initCalendar(events) {
   const modal = document.getElementById('event-modal');
   const modalOverlay = document.getElementById('modal-overlay');
