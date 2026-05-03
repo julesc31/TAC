@@ -17,7 +17,7 @@
   <div class="header-inner">
     <a href="/" class="logo" style="flex-direction:row;align-items:center;gap:.75rem">
       <img src="/uploads/photos/logo.png" alt="Logo Arc Club Pechbonnieu" style="height:2.5rem;width:auto">
-      <div>
+      <div style="display:flex;flex-direction:column">
         <span class="logo-name">Arc Club Pechbonnieu</span>
         <span class="logo-sub">Section tir à l'arc · Foyer Rural de Pechbonnieu</span>
       </div>
