@@ -108,7 +108,7 @@ include __DIR__ . '/inc/header.php';
 
     <section class="card">
       <h2 class="card-title">Le Salut et les Gestes de Respect</h2>
-      <img src="/uploads/photos/salut.jpg" alt="Le Salut des archers" class="img-rounded" style="height:18rem;object-fit:cover;width:100%;margin-bottom:1.5rem">
+      <img src="/uploads/photos/salut.jpg" alt="Le Salut des archers" class="img-rounded" style="height:18rem;object-fit:cover;object-position:center top;width:100%;margin-bottom:1.5rem">
       <p class="text-body" style="margin-bottom:1.25rem">Dans le tir à l'arc, de nombreux gestes traditionnels sont non seulement des marques de respect, mais aussi des pratiques de sécurité essentielles.</p>
       <h3 class="card-subtitle">Le Salut</h3>
       <ul style="list-style:none;display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
