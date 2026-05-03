@@ -17,17 +17,20 @@ if (header) {
 // ─── Burger menu ────────────────────────────────────────────────────────────
 const burger = document.getElementById('burger');
 const nav = document.getElementById('main-nav');
+const burgerIconMenu = document.getElementById('burger-icon-menu');
+const burgerIconClose = document.getElementById('burger-icon-close');
 if (burger && nav) {
   burger.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
-    burger.classList.toggle('open', open);
     burger.setAttribute('aria-expanded', open);
+    if (burgerIconMenu) burgerIconMenu.style.display = open ? 'none' : '';
+    if (burgerIconClose) burgerIconClose.style.display = open ? '' : 'none';
   });
-  // Close on nav link click
   nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     nav.classList.remove('open');
-    burger.classList.remove('open');
     burger.setAttribute('aria-expanded', false);
+    if (burgerIconMenu) burgerIconMenu.style.display = '';
+    if (burgerIconClose) burgerIconClose.style.display = 'none';
   }));
 }
 

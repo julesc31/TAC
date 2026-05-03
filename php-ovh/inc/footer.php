@@ -2,8 +2,8 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo-name">Arc Club Pechbonnieu</div>
-      <div class="footer-logo-sub">Tir à l'Arc · Affilié FFTA</div>
-      <p class="footer-desc">Club de tir à l'arc de Pechbonnieu, affilié à la Fédération Française de Tir à l'Arc (FFTA). Ouvert à tous, débutants comme confirmés.</p>
+      <div class="footer-logo-sub">Section tir à l'arc · Foyer Rural de Pechbonnieu</div>
+      <p class="footer-desc">Section tir à l'arc du Foyer Rural de Pechbonnieu, affiliée à la FFTA. Ouvert à tous — loisir ou compétition, débutants comme confirmés.</p>
       <div class="footer-socials">
         <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="social-btn">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
@@ -21,8 +21,7 @@
         <li><a href="/club.php">Le Club</a></li>
         <li><a href="/album-photo.php">Album photo</a></li>
         <li><a href="/disciplines.php">Disciplines</a></li>
-        <li><a href="/rejoindre.php">Rejoindre le club</a></li>
-        <li><a href="/contact.php">Contact</a></li>
+        <li><a href="/rejoindre.php">Rejoindre & Contact</a></li>
         <li><a href="/calendrier.php">Calendrier</a></li>
         <li><a href="/traditions.php">Traditions des archers</a></li>
       </ul>
