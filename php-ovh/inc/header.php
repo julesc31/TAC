@@ -34,7 +34,7 @@
         'traditions'  => 'Traditions',
         'album-photo' => 'Album photo',
         'calendrier'  => 'Calendrier',
-        'rejoindre'   => 'Rejoindre & Contact',
+        'rejoindre'   => 'Renseignements',
       ];
       foreach ($nav as $file => $label):
         $isActive = ($currentPage === $file) || ($currentPage === 'contact' && $file === 'rejoindre');

@@ -21,7 +21,7 @@
         <li><a href="/club.php">Le Club</a></li>
         <li><a href="/album-photo.php">Album photo</a></li>
         <li><a href="/disciplines.php">Disciplines</a></li>
-        <li><a href="/rejoindre.php">Rejoindre & Contact</a></li>
+        <li><a href="/rejoindre.php">Renseignements</a></li>
         <li><a href="/calendrier.php">Calendrier</a></li>
         <li><a href="/traditions.php">Traditions des archers</a></li>
       </ul>
