@@ -27,6 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = db()->prepare("INSERT INTO preinscriptions (nom, email, categorie, age, telephone, type_arc, niveau, commentaires, created_at) VALUES (?,?,?,?,?,?,?,?,NOW())");
             $stmt->execute([$nom, $email, $categorie, $age ?: null, $telephone ?: null, $typeArc ?: null, $niveau ?: null, $commentaires ?: null]);
+            sendNotification(
+                '[Arc Club Pechbonnieu] Nouvelle préinscription',
+                "Nom : $nom\nEmail : $email\nCatégorie : $categorie\nÂge : $age\nTéléphone : $telephone\nType d'arc : $typeArc\nNiveau : $niveau\n\nCommentaires :\n$commentaires"
+            );
             $submitted = true;
         } catch (Exception $e) {
             $formErrors[] = 'Erreur lors de l\'enregistrement. Veuillez réessayer.';

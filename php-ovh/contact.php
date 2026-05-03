@@ -23,6 +23,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         try {
             $stmt = db()->prepare("INSERT INTO contacts (nom, email, sujet, message, created_at) VALUES (?,?,?,?,NOW())");
             $stmt->execute([$nom, $email, $sujet, $message]);
+            sendNotification(
+                '[Arc Club Pechbonnieu] Nouveau message de contact',
+                "Nom : $nom\nEmail : $email\nSujet : $sujet\n\nMessage :\n$message"
+            );
             $submitted = true;
         } catch (Exception $e) {
             $formErrors[] = 'Erreur lors de l\'envoi. Veuillez réessayer.';

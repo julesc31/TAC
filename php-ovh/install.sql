@@ -80,4 +80,15 @@ INSERT IGNORE INTO `news` (`id`, `tag`, `title`, `body`, `published_at`) VALUES
 (2, 'Compétition',  'Résultats du championnat régional', 'Nos archers ont brillé lors du championnat régional. Félicitations à tous les participants !', DATE_SUB(CURDATE(), INTERVAL 7 DAY)),
 (3, 'Entraînement', 'Reprise des entraînements', 'Les entraînements reprennent après les vacances. Rendez-vous lundi à 21h au gymnase.', DATE_SUB(CURDATE(), INTERVAL 14 DAY));
 
+-- ─── Emails de notification ──────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS `notification_emails` (
+  `id`         INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `email`      VARCHAR(150) NOT NULL,
+  `created_at` DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uq_email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+INSERT IGNORE INTO `notification_emails` (`email`) VALUES ('pechbonnieu.tiralarc@gmail.com');
+
 SET foreign_key_checks = 1;

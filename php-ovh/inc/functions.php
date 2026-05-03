@@ -40,6 +40,23 @@ function formatDateFR(string $date): string {
     return intval(date('j', $ts)) . ' ' . $months[intval(date('n', $ts))] . ' ' . date('Y', $ts);
 }
 
+function getNotificationEmails(): array {
+    try {
+        return db()->query("SELECT email FROM notification_emails ORDER BY id")->fetchAll(PDO::FETCH_COLUMN);
+    } catch (Exception $e) {
+        return [];
+    }
+}
+
+function sendNotification(string $subject, string $body): void {
+    $emails = getNotificationEmails();
+    if (empty($emails)) return;
+    $headers = "From: noreply@pechbonnieu-arc-club.fr\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+    foreach ($emails as $email) {
+        mail($email, $subject, $body, $headers);
+    }
+}
+
 function uploadPhoto(array $file): string {
     $allowedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
     if (!in_array($file['type'], $allowedMime)) {
