@@ -16,14 +16,15 @@
 
     <div class="footer-nav">
       <h3>Navigation</h3>
-      <ul>
+      <ul style="display:grid;grid-template-columns:1fr 1fr;gap:.35rem 1rem">
         <li><a href="/">Accueil</a></li>
         <li><a href="/club.php">Le Club</a></li>
-        <li><a href="/album-photo.php">Album photo</a></li>
         <li><a href="/disciplines.php">Disciplines</a></li>
-        <li><a href="/rejoindre.php">Renseignements</a></li>
-        <li><a href="/calendrier.php">Calendrier</a></li>
         <li><a href="/traditions.php">Traditions des archers</a></li>
+        <li><a href="/calendrier.php">Calendrier</a></li>
+        <li><a href="/resultats.php">Résultats</a></li>
+        <li><a href="/album-photo.php">Album photo</a></li>
+        <li><a href="/rejoindre.php">Renseignements</a></li>
       </ul>
     </div>
 
