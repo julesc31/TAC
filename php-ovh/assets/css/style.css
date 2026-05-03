@@ -51,6 +51,7 @@ button{cursor:pointer;font:inherit;border:none;background:none}
 .container{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 .container-sm{max-width:900px;margin:0 auto;padding:0 1.5rem}
 .container-md{max-width:1100px;margin:0 auto;padding:0 1.5rem}
+.container-lg{max-width:1280px;margin:0 auto;padding:0 1.5rem}
 
 /* ─── Page hero ────────────────────────────────────────────────────────────── */
 .page-hero{position:relative;padding:5rem 0 4rem;margin-top:4rem;overflow:hidden;text-align:center}
