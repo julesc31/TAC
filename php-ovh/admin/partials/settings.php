@@ -35,7 +35,6 @@ $emails = db()->query("SELECT * FROM notification_emails ORDER BY id")->fetchAll
     <h2 style="color:#fff;font-size:1rem;font-weight:600;margin-bottom:1rem">Emails de notification</h2>
     <p style="color:var(--stone4);font-size:.8rem;margin-bottom:1.25rem">Ces adresses reçoivent un email à chaque nouveau message de contact ou préinscription.</p>
 
-    <!-- Liste des emails -->
     <?php if (empty($emails)): ?>
       <p style="color:var(--stone5);font-size:.85rem;margin-bottom:1rem">Aucun email configuré.</p>
     <?php else: ?>
@@ -54,7 +53,6 @@ $emails = db()->query("SELECT * FROM notification_emails ORDER BY id")->fetchAll
       </div>
     <?php endif; ?>
 
-    <!-- Ajout d'un email -->
     <form method="POST" style="display:flex;gap:.75rem;align-items:flex-end">
       <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
       <input type="hidden" name="action" value="add_email">
