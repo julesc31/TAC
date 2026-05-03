@@ -115,32 +115,11 @@ include __DIR__ . '/inc/header.php';
       </section>
     </div>
 
-    <!-- Rangée 2 : Carte + Formulaire | Étapes + Liens -->
+    <!-- Rangée 2 : Carte + Formulaire | Coordonnées + Étapes + Liens -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
 
-      <!-- Colonne gauche : Coordonnées + Carte + Formulaire -->
+      <!-- Colonne gauche : Carte + Formulaire -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
-        <section class="card">
-          <h2 class="card-title">Nos Coordonnées</h2>
-          <ul class="contact-info-list">
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div><div class="contact-info-title">Tir extérieur</div><div class="contact-info-val">47 chemin de Labastidole, 31140 Pechbonnieu<br><span style="color:var(--stone5)">(Parking du cimetière)</span></div></div>
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <div><div class="contact-info-title">Tir en salle</div><div class="contact-info-val">Gymnase Colette Besson, 31140 Pechbonnieu<br><span style="color:var(--stone5)">(À côté du collège)</span></div></div>
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.95a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <div><div class="contact-info-title">Téléphone</div><div class="contact-info-val">05 61 09 73 32</div></div>
-            </li>
-            <li>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              <div><div class="contact-info-title">Email</div><a href="mailto:pechbonnieu.tiralarc@gmail.com" style="color:var(--gold)">pechbonnieu.tiralarc@gmail.com</a></div>
-            </li>
-          </ul>
-        </section>
         <section class="card" style="padding:0;overflow:hidden">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--white10)">
             <h2 style="color:var(--gold);font-weight:700;font-size:1.1rem">Plan d'accès</h2>
@@ -255,8 +234,30 @@ include __DIR__ . '/inc/header.php';
 
       </div><!-- fin colonne gauche -->
 
-      <!-- Colonne droite : Comment s'inscrire + Liens utiles -->
+      <!-- Colonne droite : Coordonnées + Comment s'inscrire + Liens utiles -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <section class="card">
+          <h2 class="card-title">Nos Coordonnées</h2>
+          <ul class="contact-info-list">
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="contact-info-title">Tir extérieur</div><div class="contact-info-val">47 chemin de Labastidole, 31140 Pechbonnieu<br><span style="color:var(--stone5)">(Parking du cimetière)</span></div></div>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <div><div class="contact-info-title">Tir en salle</div><div class="contact-info-val">Gymnase Colette Besson, 31140 Pechbonnieu<br><span style="color:var(--stone5)">(À côté du collège)</span></div></div>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.95a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <div><div class="contact-info-title">Téléphone</div><div class="contact-info-val">05 61 09 73 32</div></div>
+            </li>
+            <li>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <div><div class="contact-info-title">Email</div><a href="mailto:pechbonnieu.tiralarc@gmail.com" style="color:var(--gold)">pechbonnieu.tiralarc@gmail.com</a></div>
+            </li>
+          </ul>
+        </section>
+
         <section class="card">
           <h2 class="card-title">Comment s'inscrire ?</h2>
           <div style="display:flex;flex-direction:column;gap:.875rem">
