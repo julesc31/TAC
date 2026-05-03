@@ -63,17 +63,17 @@ include __DIR__ . '/inc/header.php';
   <div class="container-lg" style="padding-top:3rem;padding-bottom:5rem;display:flex;flex-direction:column;gap:2rem">
 
     <!-- Rangée 1 : Horaires + Tarifs -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start">
 
       <!-- Horaires -->
       <section class="card">
         <h2 class="card-title">Horaires des séances</h2>
-        <div class="schedule-grid" style="grid-template-columns:repeat(3,1fr)">
-          <div class="schedule-card"><div class="schedule-day">Lundi</div><div class="schedule-hours">21h – 23h</div><div class="schedule-public">Adultes</div></div>
-          <div class="schedule-card"><div class="schedule-day">Mercredi</div><div class="schedule-hours">16h – 17h30</div><div class="schedule-public">Enfants & ados</div></div>
-          <div class="schedule-card"><div class="schedule-day">Samedi</div><div class="schedule-hours">09h – 12h</div><div class="schedule-public">Tous niveaux</div></div>
+        <div class="schedule-grid" style="grid-template-columns:repeat(3,1fr);gap:.5rem">
+          <div class="schedule-card" style="padding:.6rem .5rem"><div class="schedule-day">Lundi</div><div class="schedule-hours">21h – 23h</div><div class="schedule-public">Adultes</div></div>
+          <div class="schedule-card" style="padding:.6rem .5rem"><div class="schedule-day">Mercredi</div><div class="schedule-hours">16h – 17h30</div><div class="schedule-public">Enfants & ados</div></div>
+          <div class="schedule-card" style="padding:.6rem .5rem"><div class="schedule-day">Samedi</div><div class="schedule-hours">09h – 12h</div><div class="schedule-public">Tous niveaux</div></div>
         </div>
-        <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+        <div style="margin-top:.75rem;display:flex;flex-direction:column;gap:.3rem">
           <?php foreach ([
             'Matériel prêté gratuitement aux débutants',
             'Pratique loisir sans licence FFTA possible',
