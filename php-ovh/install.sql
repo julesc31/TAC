@@ -66,6 +66,33 @@ CREATE TABLE IF NOT EXISTS `admin_users` (
   UNIQUE KEY `uq_email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+-- ─── Compétitions ───────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS `competitions` (
+  `id`               INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `titre`            VARCHAR(255) NOT NULL,
+  `type_competition` VARCHAR(100) NOT NULL,
+  `lieu`             VARCHAR(255) NOT NULL DEFAULT '',
+  `date`             DATE         NOT NULL,
+  `lien_officiel`    VARCHAR(500) NOT NULL DEFAULT '',
+  `created_at`       DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_date` (`date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ─── Résultats des archers ───────────────────────────────────
+CREATE TABLE IF NOT EXISTS `resultats` (
+  `id`             INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `competition_id` INT UNSIGNED NOT NULL,
+  `nom`            VARCHAR(150) NOT NULL,
+  `categorie`      VARCHAR(100) NOT NULL DEFAULT '',
+  `place`          SMALLINT UNSIGNED     DEFAULT NULL,
+  `created_at`     DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `idx_competition` (`competition_id`),
+  CONSTRAINT `fk_resultat_competition`
+    FOREIGN KEY (`competition_id`) REFERENCES `competitions` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 -- ─── Compte admin par défaut ─────────────────────────────────
 -- Mot de passe : ChangeMe2024!  (CHANGEZ-LE immédiatement après connexion)
 -- Hash généré avec password_hash('ChangeMe2024!', PASSWORD_BCRYPT)

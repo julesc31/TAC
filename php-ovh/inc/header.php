@@ -35,6 +35,7 @@
         'contact'     => 'Contact',
         'calendrier'  => 'Calendrier',
         'traditions'  => 'Traditions',
+        'resultats'   => 'Résultats',
       ];
       foreach ($nav as $file => $label):
         $active = ($currentPage === $file) ? ' active' : '';
