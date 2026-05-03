@@ -60,21 +60,66 @@ include __DIR__ . '/inc/header.php';
     </div>
   </div>
 
-  <div class="container-lg" style="padding-top:3rem;padding-bottom:5rem">
+  <div class="container-lg" style="padding-top:3rem;padding-bottom:5rem;display:flex;flex-direction:column;gap:2rem">
 
-    <div class="two-col" style="gap:2.5rem;margin-bottom:3rem">
+    <!-- Rangée 1 : Horaires + Tarifs -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
 
+      <!-- Horaires -->
+      <section class="card">
+        <h2 class="card-title">Horaires des séances</h2>
+        <div class="schedule-grid" style="grid-template-columns:repeat(3,1fr)">
+          <div class="schedule-card"><div class="schedule-day">Lundi</div><div class="schedule-hours">21h – 23h</div><div class="schedule-public">Adultes</div></div>
+          <div class="schedule-card"><div class="schedule-day">Mercredi</div><div class="schedule-hours">16h – 17h30</div><div class="schedule-public">Enfants & ados</div></div>
+          <div class="schedule-card"><div class="schedule-day">Samedi</div><div class="schedule-hours">09h – 12h</div><div class="schedule-public">Tous niveaux</div></div>
+        </div>
+        <div style="margin-top:1.25rem;display:flex;flex-direction:column;gap:.5rem">
+          <?php foreach ([
+            'Matériel prêté gratuitement aux débutants',
+            'Pratique loisir sans licence FFTA possible',
+            'Séances d\'initiation avant inscription',
+            'Encadrement par des moniteurs diplômés FFTA',
+            'Ouvert dès 7 ans',
+          ] as $item): ?>
+            <div style="display:flex;align-items:flex-start;gap:.5rem">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3cb371" stroke-width="2.5" style="flex-shrink:0;margin-top:.2rem"><polyline points="20 6 9 17 4 12"/></svg>
+              <span style="color:var(--stone2);font-size:.85rem"><?= h($item) ?></span>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </section>
+
+      <!-- Tarifs 2026 -->
+      <section class="card">
+        <h2 class="card-title">Tarifs 2026</h2>
+        <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
+          <?php foreach ([
+            ['Cotisation annuelle', 'XXX €', 'Inclut la licence tir loisir, la cotisation club et un T-shirt du club'],
+            ['Cotisation Foyer Rural ESCALE', 'XX €', 'Participation aux frais de fonctionnement du Foyer Rural de Pechbonnieu'],
+            ['Petit matériel de départ', 'XX €', 'Matériel personnel minimum pour débuter la pratique'],
+            ['Licence FFTA', 'XX €', 'Optionnelle — obligatoire pour participer aux compétitions officielles'],
+          ] as [$label, $price, $desc]): ?>
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:.875rem;background:rgba(255,255,255,.05);border-radius:.75rem;border:1px solid var(--white10)">
+              <div>
+                <div style="color:#fff;font-weight:600;font-size:.875rem;margin-bottom:.2rem"><?= $label ?></div>
+                <div style="color:var(--stone4);font-size:.78rem;line-height:1.4"><?= $desc ?></div>
+              </div>
+              <div style="color:var(--gold);font-weight:700;font-size:1rem;white-space:nowrap;flex-shrink:0"><?= $price ?></div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+        <a href="/reglement-interieur.php" style="display:inline-flex;align-items:center;gap:.5rem;color:var(--gold);font-size:.85rem;font-weight:500">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+          Consulter le règlement intérieur
+        </a>
+      </section>
+    </div>
+
+    <!-- Rangée 2 : Coordonnées + Carte -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+
+      <!-- Coordonnées + étapes + liens -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
-
-        <section class="card">
-          <h2 class="card-title">Horaires des séances</h2>
-          <div class="schedule-grid" style="grid-template-columns:repeat(3,1fr)">
-            <div class="schedule-card"><div class="schedule-day">Lundi</div><div class="schedule-hours">21h – 23h</div><div class="schedule-public">Adultes</div></div>
-            <div class="schedule-card"><div class="schedule-day">Mercredi</div><div class="schedule-hours">16h – 17h30</div><div class="schedule-public">Enfants & ados</div></div>
-            <div class="schedule-card"><div class="schedule-day">Samedi</div><div class="schedule-hours">09h – 12h</div><div class="schedule-public">Tous niveaux</div></div>
-          </div>
-        </section>
-
         <section class="card">
           <h2 class="card-title">Nos Coordonnées</h2>
           <ul class="contact-info-list">
@@ -99,57 +144,65 @@ include __DIR__ . '/inc/header.php';
 
         <section class="card">
           <h2 class="card-title">Comment s'inscrire ?</h2>
-          <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="display:flex;flex-direction:column;gap:.875rem">
             <?php foreach ([
-              ['1', 'Prise de contact', 'Envoyez-nous votre message via le formulaire ci-contre.'],
+              ['1', 'Prise de contact', 'Envoyez-nous votre message via le formulaire ci-dessous.'],
               ['2', 'Séance découverte', 'Venez essayer gratuitement lors d\'une de nos séances.'],
               ['3', 'Dossier d\'adhésion', 'Remplissez le dossier et réglez la cotisation.'],
               ['4', 'Licence FFTA', 'Optionnelle, pour participer aux compétitions officielles.'],
             ] as [$n, $t, $d]): ?>
               <div style="display:flex;align-items:flex-start;gap:.875rem">
                 <div style="width:2rem;height:2rem;background:var(--gold);color:#0a2744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0"><?= $n ?></div>
-                <div><div style="color:#fff;font-weight:600;font-size:.875rem"><?= $t ?></div><div style="color:var(--stone4);font-size:.8rem;line-height:1.5"><?= $d ?></div></div>
+                <div><div style="color:#fff;font-weight:600;font-size:.875rem"><?= $t ?></div><div style="color:var(--stone4);font-size:.8rem;line-height:1.4"><?= $d ?></div></div>
               </div>
             <?php endforeach; ?>
           </div>
         </section>
 
+        <section class="card">
+          <h2 class="card-title">Liens utiles</h2>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <a href="https://www.ffta.fr" target="_blank" rel="noopener noreferrer"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Fédération Française de Tir à l'Arc</div><div style="color:var(--stone4);font-size:.75rem">www.ffta.fr</div></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="https://www.foyer-rural-pechbonnieu.fr" target="_blank" rel="noopener noreferrer"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Foyer Rural ESCALE de Pechbonnieu</div><div style="color:var(--stone4);font-size:.75rem">foyer-rural-pechbonnieu.fr</div></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="/reglement-interieur.php"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Règlement intérieur du club</div><div style="color:var(--stone4);font-size:.75rem">Consulter les règles de fonctionnement</div></div>
+            </a>
+          </div>
+        </section>
       </div>
 
+      <!-- Carte Leaflet -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
         <section class="card" style="padding:0;overflow:hidden">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--white10)">
             <h2 style="color:var(--gold);font-weight:700;font-size:1.1rem">Plan d'accès</h2>
           </div>
-          <div id="map" style="height:320px"></div>
+          <div id="map" style="height:340px"></div>
           <div style="padding:.75rem 1.25rem;border-top:1px solid var(--white10);display:flex;flex-direction:column;gap:.5rem">
-            <span style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--stone2)"><span style="width:.75rem;height:.75rem;border-radius:50%;background:#ef4444;flex-shrink:0"></span>Terrain extérieur (parking cimetière)</span>
-            <span style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--stone2)"><span style="width:.75rem;height:.75rem;border-radius:50%;background:#3b82f6;flex-shrink:0"></span>Gymnase Colette Besson</span>
-          </div>
-        </section>
-
-        <section class="card">
-          <h2 class="card-title">Informations pratiques</h2>
-          <div style="display:flex;flex-direction:column;gap:.6rem">
-            <?php foreach ([
-              'Matériel prêté gratuitement aux débutants',
-              'Pratique loisir sans licence FFTA possible',
-              'Séances d\'initiation avant inscription',
-              'Encadrement par des moniteurs diplômés FFTA',
-              'Ouvert dès 7 ans',
-              'Licence FFTA optionnelle pour les compétitions',
-            ] as $item): ?>
-              <div style="display:flex;align-items:flex-start;gap:.625rem">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3cb371" stroke-width="2.5" style="flex-shrink:0;margin-top:.15rem"><polyline points="20 6 9 17 4 12"/></svg>
-                <span style="color:var(--stone2);font-size:.85rem"><?= h($item) ?></span>
-              </div>
-            <?php endforeach; ?>
+            <span style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--stone2)"><span style="width:.75rem;height:.75rem;border-radius:50%;background:#ef4444;flex-shrink:0"></span>Terrain extérieur — 47 chemin de Labastidole</span>
+            <span style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--stone2)"><span style="width:.75rem;height:.75rem;border-radius:50%;background:#3b82f6;flex-shrink:0"></span>Gymnase Colette Besson (tir en salle)</span>
           </div>
         </section>
       </div>
     </div>
 
-    <section class="card" style="max-width:52rem;margin:0 auto">
+    <!-- Formulaire -->
+    <section class="card" style="max-width:54rem;margin:0 auto;width:100%">
       <h2 class="card-title">Formulaire de contact & préinscription</h2>
       <p style="color:var(--stone4);font-size:.875rem;margin-bottom:2rem">Demande d'information, préinscription ou autre — un seul formulaire suffit. Nous vous répondrons sous 48h.</p>
 
@@ -160,7 +213,6 @@ include __DIR__ . '/inc/header.php';
           <p style="color:var(--stone2);font-size:.9rem">Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais.</p>
         </div>
       <?php else: ?>
-
         <?php if (!empty($formErrors)): ?>
           <div class="alert alert-error" style="margin-bottom:1.5rem">
             <?= implode('<br>', array_map('h', $formErrors)) ?>
@@ -269,8 +321,8 @@ function togglePreinscription(val) {
 </script>
 
 <style>
-@media(max-width:768px){
-  .two-col{grid-template-columns:1fr!important}
+@media(max-width:900px){
+  .container-lg > div > div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns:1fr!important }
 }
 </style>
 
