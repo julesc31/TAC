@@ -159,6 +159,7 @@ include __DIR__ . '/inc/header.php';
           </div>
         </section>
 
+        <!-- Liens utiles -->
         <section class="card">
           <h2 class="card-title">Liens utiles</h2>
           <div style="display:flex;flex-direction:column;gap:.75rem">
@@ -186,7 +187,7 @@ include __DIR__ . '/inc/header.php';
         </section>
       </div>
 
-      <!-- Carte Leaflet -->
+      <!-- Carte Leaflet + Formulaire -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
         <section class="card" style="padding:0;overflow:hidden">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--white10)">
@@ -198,111 +199,111 @@ include __DIR__ . '/inc/header.php';
             <span style="display:flex;align-items:center;gap:.5rem;font-size:.875rem;color:var(--stone2)"><span style="width:.75rem;height:.75rem;border-radius:50%;background:#3b82f6;flex-shrink:0"></span>Gymnase Colette Besson (tir en salle)</span>
           </div>
         </section>
-      </div>
-    </div>
 
-    <!-- Formulaire -->
-    <section class="card" style="max-width:54rem;margin:0 auto;width:100%">
-      <h2 class="card-title">Formulaire de contact & préinscription</h2>
-      <p style="color:var(--stone4);font-size:.875rem;margin-bottom:2rem">Demande d'information, préinscription ou autre — un seul formulaire suffit. Nous vous répondrons sous 48h.</p>
+        <!-- Formulaire -->
+        <section class="card">
+          <h2 class="card-title">Formulaire de contact & préinscription</h2>
+          <p style="color:var(--stone4);font-size:.875rem;margin-bottom:2rem">Demande d'information, préinscription ou autre — un seul formulaire suffit. Nous vous répondrons sous 48h.</p>
 
-      <?php if ($submitted): ?>
-        <div style="text-align:center;padding:3rem 0">
-          <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#3cb371" stroke-width="1.5" style="margin:0 auto 1rem;display:block"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin-bottom:.5rem">Message envoyé !</h3>
-          <p style="color:var(--stone2);font-size:.9rem">Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais.</p>
-        </div>
-      <?php else: ?>
-        <?php if (!empty($formErrors)): ?>
-          <div class="alert alert-error" style="margin-bottom:1.5rem">
-            <?= implode('<br>', array_map('h', $formErrors)) ?>
-          </div>
-        <?php endif; ?>
-
-        <form method="POST">
-          <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
-
-          <div class="form-group">
-            <label class="form-label">Objet de votre demande *</label>
-            <select name="sujet" id="sujet-select" class="form-select" onchange="togglePreinscription(this.value)">
-              <option value="information"    <?= ($_POST['sujet'] ?? '') === 'information'    ? 'selected' : '' ?>>Demande d'information générale</option>
-              <option value="preinscription" <?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'selected' : '' ?>>Préinscription au club</option>
-              <option value="autre"          <?= ($_POST['sujet'] ?? '') === 'autre'          ? 'selected' : '' ?>>Autre</option>
-            </select>
-          </div>
-
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-            <div class="form-group">
-              <label class="form-label">Nom complet *</label>
-              <input type="text" name="nom" required value="<?= h($_POST['nom'] ?? '') ?>" placeholder="Votre nom" class="form-input">
+          <?php if ($submitted): ?>
+            <div style="text-align:center;padding:3rem 0">
+              <svg width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="#3cb371" stroke-width="1.5" style="margin:0 auto 1rem;display:block"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <h3 style="color:#fff;font-size:1.25rem;font-weight:700;margin-bottom:.5rem">Message envoyé !</h3>
+              <p style="color:var(--stone2);font-size:.9rem">Nous avons bien reçu votre message et vous répondrons dans les meilleurs délais.</p>
             </div>
-            <div class="form-group">
-              <label class="form-label">Email *</label>
-              <input type="email" name="email" required value="<?= h($_POST['email'] ?? '') ?>" placeholder="votre@email.com" class="form-input">
-            </div>
-          </div>
+          <?php else: ?>
+            <?php if (!empty($formErrors)): ?>
+              <div class="alert alert-error" style="margin-bottom:1.5rem">
+                <?= implode('<br>', array_map('h', $formErrors)) ?>
+              </div>
+            <?php endif; ?>
 
-          <div class="form-group">
-            <label class="form-label">Téléphone</label>
-            <input type="tel" name="telephone" value="<?= h($_POST['telephone'] ?? '') ?>" placeholder="06 xx xx xx xx" class="form-input">
-          </div>
+            <form method="POST">
+              <input type="hidden" name="csrf_token" value="<?= h(csrf_token()) ?>">
 
-          <div id="preinscription-fields" style="display:<?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'block' : 'none' ?>">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
               <div class="form-group">
-                <label class="form-label">Catégorie</label>
-                <select name="categorie" class="form-select">
-                  <option value="">Sélectionner...</option>
-                  <option value="jeune"  <?= ($_POST['categorie'] ?? '') === 'jeune'  ? 'selected' : '' ?>>Jeune (moins de 18 ans)</option>
-                  <option value="adulte" <?= ($_POST['categorie'] ?? '') === 'adulte' ? 'selected' : '' ?>>Adulte</option>
-                  <option value="senior" <?= ($_POST['categorie'] ?? '') === 'senior' ? 'selected' : '' ?>>Senior</option>
+                <label class="form-label">Objet de votre demande *</label>
+                <select name="sujet" id="sujet-select" class="form-select" onchange="togglePreinscription(this.value)">
+                  <option value="information"    <?= ($_POST['sujet'] ?? '') === 'information'    ? 'selected' : '' ?>>Demande d'information générale</option>
+                  <option value="preinscription" <?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'selected' : '' ?>>Préinscription au club</option>
+                  <option value="autre"          <?= ($_POST['sujet'] ?? '') === 'autre'          ? 'selected' : '' ?>>Autre</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label class="form-label">Âge</label>
-                <input type="number" name="age" value="<?= h($_POST['age'] ?? '') ?>" placeholder="Votre âge" class="form-input">
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                <div class="form-group">
+                  <label class="form-label">Nom complet *</label>
+                  <input type="text" name="nom" required value="<?= h($_POST['nom'] ?? '') ?>" placeholder="Votre nom" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Email *</label>
+                  <input type="email" name="email" required value="<?= h($_POST['email'] ?? '') ?>" placeholder="votre@email.com" class="form-input">
+                </div>
               </div>
-            </div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+
               <div class="form-group">
-                <label class="form-label">Type d'arc souhaité</label>
-                <select name="typeArc" class="form-select">
-                  <option value="">Sélectionner...</option>
-                  <option value="recurve">Arc recurve (classique)</option>
-                  <option value="compound">Arc à poulies (compound)</option>
-                  <option value="traditionnel">Arc traditionnel / longbow</option>
-                  <option value="pas-de-preference">Pas de préférence</option>
-                </select>
+                <label class="form-label">Téléphone</label>
+                <input type="tel" name="telephone" value="<?= h($_POST['telephone'] ?? '') ?>" placeholder="06 xx xx xx xx" class="form-input">
               </div>
+
+              <div id="preinscription-fields" style="display:<?= ($_POST['sujet'] ?? '') === 'preinscription' ? 'block' : 'none' ?>">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                  <div class="form-group">
+                    <label class="form-label">Catégorie</label>
+                    <select name="categorie" class="form-select">
+                      <option value="">Sélectionner...</option>
+                      <option value="jeune"  <?= ($_POST['categorie'] ?? '') === 'jeune'  ? 'selected' : '' ?>>Jeune (moins de 18 ans)</option>
+                      <option value="adulte" <?= ($_POST['categorie'] ?? '') === 'adulte' ? 'selected' : '' ?>>Adulte</option>
+                      <option value="senior" <?= ($_POST['categorie'] ?? '') === 'senior' ? 'selected' : '' ?>>Senior</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Âge</label>
+                    <input type="number" name="age" value="<?= h($_POST['age'] ?? '') ?>" placeholder="Votre âge" class="form-input">
+                  </div>
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+                  <div class="form-group">
+                    <label class="form-label">Type d'arc souhaité</label>
+                    <select name="typeArc" class="form-select">
+                      <option value="">Sélectionner...</option>
+                      <option value="recurve">Arc recurve (classique)</option>
+                      <option value="compound">Arc à poulies (compound)</option>
+                      <option value="traditionnel">Arc traditionnel / longbow</option>
+                      <option value="pas-de-preference">Pas de préférence</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Niveau actuel</label>
+                    <select name="niveau" class="form-select">
+                      <option value="">Sélectionner...</option>
+                      <option value="debutant">Débutant (jamais pratiqué)</option>
+                      <option value="initie">Initié (quelques séances)</option>
+                      <option value="intermediaire">Intermédiaire (1–3 ans)</option>
+                      <option value="confirme">Confirmé (3+ ans)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group">
-                <label class="form-label">Niveau actuel</label>
-                <select name="niveau" class="form-select">
-                  <option value="">Sélectionner...</option>
-                  <option value="debutant">Débutant (jamais pratiqué)</option>
-                  <option value="initie">Initié (quelques séances)</option>
-                  <option value="intermediaire">Intermédiaire (1–3 ans)</option>
-                  <option value="confirme">Confirmé (3+ ans)</option>
-                </select>
+                <label class="form-label">Message *</label>
+                <textarea name="message" required rows="5" placeholder="Votre message, questions, informations complémentaires..." class="form-textarea"><?= h($_POST['message'] ?? '') ?></textarea>
               </div>
-            </div>
-          </div>
 
-          <div class="form-group">
-            <label class="form-label">Message *</label>
-            <textarea name="message" required rows="5" placeholder="Votre message, questions, informations complémentaires..." class="form-textarea"><?= h($_POST['message'] ?? '') ?></textarea>
-          </div>
+              <p style="font-size:.75rem;color:var(--stone4);margin-bottom:1.25rem">Vos données sont utilisées uniquement pour traiter votre demande.</p>
 
-          <p style="font-size:.75rem;color:var(--stone4);margin-bottom:1.25rem">Vos données sont utilisées uniquement pour traiter votre demande.</p>
+              <button type="submit" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Envoyer
+              </button>
+            </form>
+          <?php endif; ?>
+        </section>
 
-          <button type="submit" class="btn btn-primary">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            Envoyer
-          </button>
-        </form>
-      <?php endif; ?>
-    </section>
-
-  </div>
+      </div><!-- fin colonne droite -->
+    </div><!-- fin rangée 2 -->
+  </div><!-- fin container-lg -->
 </main>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
