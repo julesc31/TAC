@@ -19,7 +19,7 @@ include __DIR__ . '/inc/header.php';
   <div class="container-sm pb-20 space-y-8" style="padding-bottom:5rem;padding-top:2rem">
 
     <section class="card">
-      <div class="two-col">
+      <div class="two-col" style="align-items:stretch">
         <div>
           <h2 class="card-title">Plus qu'un Sport : Une Pratique Riche en Traditions</h2>
           <p class="text-body" style="margin-bottom:1rem">Dans le tir à l'arc, chaque geste compte. La façon de tenir l'arc, de viser, et même de récupérer les flèches, s'inscrit dans une longue tradition.</p>
@@ -33,13 +33,13 @@ include __DIR__ . '/inc/header.php';
           </ul>
           <p class="text-muted" style="font-size:.875rem;margin-top:1rem;line-height:1.6">Ces valeurs, essentielles pour bien tirer, sont également utiles dans la vie quotidienne. Elles font du tir à l'arc non seulement un sport, mais aussi une école de vie.</p>
         </div>
-        <img src="/uploads/photos/groupe-archers.jpg" alt="Groupe d'archers" class="img-rounded" style="height:20rem;object-fit:cover">
+        <img src="/uploads/photos/groupe-archers.jpg" alt="Groupe d'archers" class="img-rounded" style="height:100%;min-height:16rem;object-fit:cover;align-self:stretch">
       </div>
     </section>
 
     <section class="card">
-      <div class="two-col">
-        <img src="/uploads/photos/tb08092024-4.jpg" alt="Le Beursault" class="img-rounded" style="height:20rem;object-fit:cover">
+      <div class="two-col" style="align-items:stretch">
+        <img src="/uploads/photos/tb08092024-4.jpg" alt="Le Beursault" class="img-rounded" style="height:100%;min-height:16rem;object-fit:cover;align-self:stretch">
         <div>
           <h2 class="card-title">Le Beursault : Une Tradition Ancrée dans l'Histoire Militaire</h2>
           <p class="text-body" style="margin-bottom:1rem">Le Beursault est l'une des formes de tir à l'arc les plus anciennes en France. Son origine remonte au Moyen Âge et est étroitement liée à l'entraînement militaire des archers.</p>
@@ -88,7 +88,7 @@ include __DIR__ . '/inc/header.php';
     </section>
 
     <section class="card">
-      <div class="two-col">
+      <div class="two-col" style="align-items:stretch">
         <div>
           <h2 class="card-title">Le Morata : Une Tradition Unique du Sud-Ouest</h2>
           <p class="text-body" style="margin-bottom:1rem">Le Morata, né dans les années 1970, est une tradition de tir à l'arc propre au Sud-Ouest de la France. Il incarne l'esprit de camaraderie et d'inclusivité au sein de la communauté des archers.</p>
@@ -102,7 +102,7 @@ include __DIR__ . '/inc/header.php';
           <p class="text-muted" style="font-size:.875rem;line-height:1.6;margin-bottom:.75rem">Contrairement aux compétitions classiques, le Morata met l'accent sur le partage d'expérience et l'amélioration personnelle plutôt que sur la performance pure.</p>
           <p class="text-muted" style="font-size:.875rem;line-height:1.6">Participer régulièrement aux Morata, c'est perpétuer cette tradition qui incarne les valeurs fondamentales du tir à l'arc : respect mutuel, entraide et passion partagée.</p>
         </div>
-        <img src="/uploads/photos/banner.jpg" alt="Le Morata" class="img-rounded" style="height:20rem;object-fit:cover">
+        <img src="/uploads/photos/banner.jpg" alt="Le Morata" class="img-rounded" style="height:100%;min-height:16rem;object-fit:cover;align-self:stretch">
       </div>
     </section>
 
