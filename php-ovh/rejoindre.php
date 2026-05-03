@@ -115,10 +115,10 @@ include __DIR__ . '/inc/header.php';
       </section>
     </div>
 
-    <!-- Rangée 2 : Coordonnées + Carte -->
+    <!-- Rangée 2 : Carte + Formulaire | Étapes + Liens -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
 
-      <!-- Coordonnées + étapes + liens -->
+      <!-- Colonne gauche : Coordonnées + Carte + Formulaire -->
       <div style="display:flex;flex-direction:column;gap:1.5rem">
         <section class="card">
           <h2 class="card-title">Nos Coordonnées</h2>
@@ -141,54 +141,6 @@ include __DIR__ . '/inc/header.php';
             </li>
           </ul>
         </section>
-
-        <section class="card">
-          <h2 class="card-title">Comment s'inscrire ?</h2>
-          <div style="display:flex;flex-direction:column;gap:.875rem">
-            <?php foreach ([
-              ['1', 'Prise de contact', 'Envoyez-nous votre message via le formulaire ci-dessous.'],
-              ['2', 'Séance découverte', 'Venez essayer gratuitement lors d\'une de nos séances.'],
-              ['3', 'Dossier d\'adhésion', 'Remplissez le dossier et réglez la cotisation.'],
-              ['4', 'Licence FFTA', 'Optionnelle, pour participer aux compétitions officielles.'],
-            ] as [$n, $t, $d]): ?>
-              <div style="display:flex;align-items:flex-start;gap:.875rem">
-                <div style="width:2rem;height:2rem;background:var(--gold);color:#0a2744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0"><?= $n ?></div>
-                <div><div style="color:#fff;font-weight:600;font-size:.875rem"><?= $t ?></div><div style="color:var(--stone4);font-size:.8rem;line-height:1.4"><?= $d ?></div></div>
-              </div>
-            <?php endforeach; ?>
-          </div>
-        </section>
-
-        <!-- Liens utiles -->
-        <section class="card">
-          <h2 class="card-title">Liens utiles</h2>
-          <div style="display:flex;flex-direction:column;gap:.75rem">
-            <a href="https://www.ffta.fr" target="_blank" rel="noopener noreferrer"
-               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
-               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Fédération Française de Tir à l'Arc</div><div style="color:var(--stone4);font-size:.75rem">www.ffta.fr</div></div>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-            <a href="https://www.foyer-rural-pechbonnieu.fr" target="_blank" rel="noopener noreferrer"
-               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
-               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Foyer Rural ESCALE de Pechbonnieu</div><div style="color:var(--stone4);font-size:.75rem">foyer-rural-pechbonnieu.fr</div></div>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-            </a>
-            <a href="/reglement-interieur.php"
-               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
-               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Règlement intérieur du club</div><div style="color:var(--stone4);font-size:.75rem">Consulter les règles de fonctionnement</div></div>
-            </a>
-          </div>
-        </section>
-      </div>
-
-      <!-- Carte Leaflet + Formulaire -->
-      <div style="display:flex;flex-direction:column;gap:1.5rem">
         <section class="card" style="padding:0;overflow:hidden">
           <div style="padding:1rem 1.25rem;border-bottom:1px solid var(--white10)">
             <h2 style="color:var(--gold);font-weight:700;font-size:1.1rem">Plan d'accès</h2>
@@ -301,7 +253,55 @@ include __DIR__ . '/inc/header.php';
           <?php endif; ?>
         </section>
 
+      </div><!-- fin colonne gauche -->
+
+      <!-- Colonne droite : Comment s'inscrire + Liens utiles -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <section class="card">
+          <h2 class="card-title">Comment s'inscrire ?</h2>
+          <div style="display:flex;flex-direction:column;gap:.875rem">
+            <?php foreach ([
+              ['1', 'Prise de contact', 'Envoyez-nous votre message via le formulaire ci-contre.'],
+              ['2', 'Séance découverte', 'Venez essayer gratuitement lors d\'une de nos séances.'],
+              ['3', 'Dossier d\'adhésion', 'Remplissez le dossier et réglez la cotisation.'],
+              ['4', 'Licence FFTA', 'Optionnelle, pour participer aux compétitions officielles.'],
+            ] as [$n, $t, $d]): ?>
+              <div style="display:flex;align-items:flex-start;gap:.875rem">
+                <div style="width:2rem;height:2rem;background:var(--gold);color:#0a2744;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0"><?= $n ?></div>
+                <div><div style="color:#fff;font-weight:600;font-size:.875rem"><?= $t ?></div><div style="color:var(--stone4);font-size:.8rem;line-height:1.4"><?= $d ?></div></div>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        </section>
+
+        <!-- Liens utiles -->
+        <section class="card">
+          <h2 class="card-title">Liens utiles</h2>
+          <div style="display:flex;flex-direction:column;gap:.75rem">
+            <a href="https://www.ffta.fr" target="_blank" rel="noopener noreferrer"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Fédération Française de Tir à l'Arc</div><div style="color:var(--stone4);font-size:.75rem">www.ffta.fr</div></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="https://www.foyer-rural-pechbonnieu.fr" target="_blank" rel="noopener noreferrer"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Foyer Rural ESCALE de Pechbonnieu</div><div style="color:var(--stone4);font-size:.75rem">foyer-rural-pechbonnieu.fr</div></div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--stone5)" stroke-width="2" style="margin-left:auto;flex-shrink:0"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <a href="/reglement-interieur.php"
+               style="display:flex;align-items:center;gap:.75rem;padding:.75rem;background:rgba(255,255,255,.05);border:1px solid var(--white10);border-radius:.75rem;transition:border-color .2s"
+               onmouseover="this.style.borderColor='rgba(255,215,0,.3)'" onmouseout="this.style.borderColor='var(--white10)'">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              <div><div style="color:#fff;font-size:.875rem;font-weight:500">Règlement intérieur du club</div><div style="color:var(--stone4);font-size:.75rem">Consulter les règles de fonctionnement</div></div>
+            </a>
+          </div>
+        </section>
       </div><!-- fin colonne droite -->
+
     </div><!-- fin rangée 2 -->
   </div><!-- fin container-lg -->
 </main>
